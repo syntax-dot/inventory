@@ -6,12 +6,15 @@
          alt="Close"
          @click="emit('close')">
     <div :class="$style.item"/>
+    <div :class="$style.info"/>
+    <RemoveButton/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
+import { RemoveButton } from '../RemoveButton'
 
 const isOpenModal = ref(true)
 
@@ -24,8 +27,10 @@ const emit = defineEmits<ModalWindowEmits>()
 
 .root {
   display: grid;
-  grid-template-rows: 45% 1fr;
+  grid-template-rows: 1fr 1fr max-content;
   position: absolute;
+  box-sizing: border-box;
+  padding: 18px 15px;
   right: 32px; // костыль?
   top: 32px; // костыль?
   bottom: 128px; // костыль?
@@ -37,14 +42,20 @@ const emit = defineEmits<ModalWindowEmits>()
 
 .close {
   position: absolute;
-  box-sizing: border-box;
   right: 14px;
   top: 14px;
-  padding: 15px;
 
   &:hover {
     scale: 1.1;
   }
+}
+
+.item {
+  border-bottom: 1px solid $border-color;
+}
+
+.info {
+  border-bottom: 1px solid $border-color;
 }
 </style>
 
