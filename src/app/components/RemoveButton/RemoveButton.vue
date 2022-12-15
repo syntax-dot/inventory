@@ -11,7 +11,12 @@
 
 <style module lang="scss">
 .root {
-  margin-top: 18px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: 18px 15px;
+  box-sizing: border-box;
   height: 39px;
   border-radius: 8px;
   background-color: #FA7272;

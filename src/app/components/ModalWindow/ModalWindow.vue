@@ -7,7 +7,7 @@
          @click="emit('close')">
     <div :class="$style.item"/>
     <div :class="$style.info">
-      <div v-for="div in 5"
+      <div v-for="div in 6"
            :class="$style.info_field"/>
     </div>
 
@@ -36,7 +36,7 @@ const emit = defineEmits<ModalWindowEmits>()
 
 .root {
   display: grid;
-  grid-template-rows: 1fr 1fr max-content;
+  grid-template-rows: 220px 208px max-content;
   position: absolute;
   box-sizing: border-box;
   padding: 18px 15px;
@@ -67,6 +67,8 @@ const emit = defineEmits<ModalWindowEmits>()
   display: grid;
   grid-auto-flow: row;
   gap: 40px;
+  margin: 16px 0 24px 0;
+  overflow: hidden;
 
   border-bottom: 1px solid $border-color;
 }

@@ -25,11 +25,17 @@
 <style module lang="scss">
 @import "../../../css/variables.scss";
 .root {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: grid;
   grid-template-rows: max-content max-content;
   gap: 20px;
-  margin: 6px;
-  margin: 20px 21px;
+  padding: 20px 21px;
+  background: rgba(38, 38, 38, 0.6);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #4D4D4D;
 }
 
 .input {
