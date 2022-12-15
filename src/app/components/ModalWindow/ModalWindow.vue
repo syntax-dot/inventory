@@ -7,7 +7,7 @@
          @click="emit('close')">
     <div :class="$style.item"/>
     <div :class="$style.info"/>
-    <RemoveButton/>
+    <RemoveButton @remove="isOpenRemove = !isOpenRemove"/>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 import { RemoveButton } from '../RemoveButton'
 
 const isOpenModal = ref(true)
+const isOpenRemove = ref(true)
 
 defineProps<ModalWindowProps>()
 const emit = defineEmits<ModalWindowEmits>()

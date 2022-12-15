@@ -1,5 +1,6 @@
 <template>
-  <button :class="$style.root">
+  <button :class="$style.root"
+          @click="$emit('remove')">
     Удалить предмет
   </button>
 </template>
