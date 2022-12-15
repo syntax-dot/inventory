@@ -1,7 +1,6 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.image"
-         :style="{ backgroundImage: 'url(./FrameImage.jpg)' }"/>
+    <div :class="$style.image"/>
   </div>
 </template>
 
@@ -23,8 +22,11 @@
 }
 
 .image {
+  background-image: url(../../../assets/images/FrameImage.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  backdrop-filter: blur(6px);
+  border-radius: 8px;
 }
 </style>
