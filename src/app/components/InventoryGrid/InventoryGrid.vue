@@ -21,7 +21,7 @@
     <Transition name="modal" appear>
       <ModalWindow v-if="isOpenModal"
                    ref="modal"
-                   :isShow="isOpenModal"
+                   :isOpenModal="isOpenModal"
                    @close="isOpenModal = false"/>
     </Transition>
   </div>

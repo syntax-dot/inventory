@@ -1,5 +1,5 @@
 export interface ModalWindowProps {
-  isShow: boolean
+  isOpenModal: boolean
 }
 
 export interface ModalWindowEmits {

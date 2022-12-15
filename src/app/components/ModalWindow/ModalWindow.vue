@@ -7,14 +7,16 @@
          @click="emit('close')">
     <div :class="$style.item"/>
     <div :class="$style.info"/>
-    <RemoveButton @remove="isOpenRemove = !isOpenRemove"/>
+    <RemoveButton v-if="isOpenModal" @remove="isOpenRemove = !isOpenRemove"/>
   </div>
+  <RemoveFrame/>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 import { RemoveButton } from '../RemoveButton'
+import { RemoveFrame } from '../RemoveFrame'
 
 const isOpenModal = ref(true)
 const isOpenRemove = ref(true)
