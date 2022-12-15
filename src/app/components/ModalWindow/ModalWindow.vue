@@ -5,6 +5,7 @@
          src="../../../assets/icons/close.svg"
          alt="Close"
          @click="emit('close')">
+    <div :class="$style.item"/>
   </div>
 </template>
 
@@ -23,20 +24,23 @@ const emit = defineEmits<ModalWindowEmits>()
 
 .root {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 45% 1fr;
   position: absolute;
   right: 32px; // костыль?
   top: 32px; // костыль?
   bottom: 128px; // костыль?
-  width: 35%;
-  background-color: $main-color;
+  width: 33%;
+  background-color: rgba(38, 38, 38, 0.5);
+  backdrop-filter: blur(8px);
   border: 1px solid $border-color;
 }
 
 .close {
   position: absolute;
+  box-sizing: border-box;
   right: 14px;
   top: 14px;
+  padding: 15px;
 
   &:hover {
     scale: 1.1;
