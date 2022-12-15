@@ -22,7 +22,7 @@
   transition: 0.3s ease-in-out;
 
   &:hover {
-    background-color: #ff0000ce;
+    background-color: rgba(255, 0, 0, 0.5);
   }
 }
 </style>

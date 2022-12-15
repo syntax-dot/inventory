@@ -52,6 +52,9 @@ import { InventoryGridProps } from './InventoryItem.props'
   bottom: 0;
   height: 16px;
   width: 16px;
+  padding: 2px;
+  box-sizing: border-box;
+  text-align: center;
   color: $text-color-light;
   border: 1px solid $border-color;
   border-radius: 4px 0px 0px 0px;
