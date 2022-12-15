@@ -38,6 +38,8 @@
   border-radius: 4px;
   width: 100%;
   color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }
 
 .buttons {
@@ -55,6 +57,8 @@
   cursor: pointer;
   font-size: 1.4rem;
   transition: 0.3s ease-in-out;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
 
   box-shadow: 0px 0px 32px 0px rgba(250, 114, 114, 0.2);
 }

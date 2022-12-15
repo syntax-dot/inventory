@@ -6,7 +6,10 @@
          alt="Close"
          @click="emit('close')">
     <div :class="$style.item"/>
-    <div :class="$style.info"/>
+    <div :class="$style.info">
+      <div v-for="div in 5"
+           :class="$style.info_field"/>
+    </div>
     <RemoveButton v-if="isOpenModal && !isOpenRemove" @remove="isOpenRemove = !isOpenRemove"/>
     <RemoveFrame v-if="isOpenModal && isOpenRemove"/>
   </div>
@@ -58,7 +61,16 @@ const emit = defineEmits<ModalWindowEmits>()
 }
 
 .info {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 40px;
+
   border-bottom: 1px solid $border-color;
+}
+
+.info_field {
+  height: 29px;
+  background-color: #fff;
 }
 </style>
 

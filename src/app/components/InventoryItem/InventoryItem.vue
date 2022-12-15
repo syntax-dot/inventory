@@ -28,7 +28,7 @@ import { InventoryGridProps } from './InventoryItem.props'
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.05);
-    cursor: url(../../../assets/cursors/cursor.svg), pointer;
+    cursor: url(../../../assets/cursors/hand.svg), pointer;
   }
 
   &:active {

@@ -30,6 +30,7 @@ const items = ref<Item[]>([
   padding: 32px;
   box-sizing: border-box;
   height: 100%;
+  cursor: url(../../assets/cursors/cursor.svg), pointer;
 }
 
 .inventory{
