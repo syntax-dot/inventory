@@ -1,13 +1,21 @@
 <template>
-  <Transition name="modal" appear>
-    <div :class="$style.root">
-      <img src="../../../assets/icons/close.svg" alt="Close">
-    </div>
-  </Transition>
+  <div v-if="isOpenModal === true"
+       :class="$style.root">
+    <img :class="$style.close"
+         src="../../../assets/icons/close.svg"
+         alt="Close"
+         @click="emit('close')">
+  </div>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
+import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 
+const isOpenModal = ref(true)
+
+defineProps<ModalWindowProps>()
+const emit = defineEmits<ModalWindowEmits>()
 </script>
 
 <style module lang="scss">
@@ -15,13 +23,24 @@
 
 .root {
   display: grid;
+  grid-template-rows: 1fr 1fr;
   position: absolute;
-  height: 83%;
-  right: 32px;
-  top: 32px;
+  right: 32px; // костыль?
+  top: 32px; // костыль?
+  bottom: 128px; // костыль?
   width: 35%;
   background-color: $main-color;
   border: 1px solid $border-color;
+}
+
+.close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+
+  &:hover {
+    scale: 1.1;
+  }
 }
 </style>
 

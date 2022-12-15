@@ -18,8 +18,10 @@
         </div>
       </div>
     </div>
-    <ModalWindow v-if="isOpenModal"
-                 ref="modal"/>
+    <Transition name="modal" appear>
+      <ModalWindow v-if="isOpenModal"
+                   ref="modal"/>
+    </Transition>
   </div>
 </template>
 
@@ -32,10 +34,10 @@ import { InventoryGridProps } from './InventoryGrid.props'
 
 const props: Item[] = defineProps<InventoryGridProps>()
 
-const modal = ref<HTMLDivElement>()
-const item = ref<HTMLDivElement>()
+// const modal = ref<HTMLDivElement>()
+// const item = ref<HTMLDivElement>()
 
-const isOpenModal = ref(false)
+const isOpenModal = ref(true)
 
 onMounted(() => {
   window.addEventListener('click', handleClick)
@@ -49,9 +51,18 @@ function handleClick(e: Event) {
   if (e.target instanceof HTMLElement) {
     let element = e.target
 
+    if (element !== modal.value)
+      console.log('zaebal')
+
+    if (element === item.value)
+      console.log('element is eqval item')
+
     while (element.parentElement !== null) {
-      if (element === modal.value || element === item.value)
+      if (element === modal.value) {
+        console.log('element is eqval modal')
+
         return
+      }
 
       element = element.parentElement
     }
