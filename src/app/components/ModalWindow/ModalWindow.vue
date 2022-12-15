@@ -7,9 +7,9 @@
          @click="emit('close')">
     <div :class="$style.item"/>
     <div :class="$style.info"/>
-    <RemoveButton v-if="isOpenModal" @remove="isOpenRemove = !isOpenRemove"/>
+    <RemoveButton v-if="isOpenModal && !isOpenRemove" @remove="isOpenRemove = !isOpenRemove"/>
+    <RemoveFrame v-if="isOpenModal && isOpenRemove"/>
   </div>
-  <RemoveFrame/>
 </template>
 
 <script lang="ts" setup>
