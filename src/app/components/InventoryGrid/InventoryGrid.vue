@@ -19,7 +19,6 @@
 
 .root {
   display: grid;
-  height: 100vh;
   grid-template-rows: repeat(5, 20%);
   border-radius: 12px;
   background-color: #4D4D4D;

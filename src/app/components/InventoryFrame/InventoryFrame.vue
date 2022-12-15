@@ -1,5 +1,8 @@
 <template>
-  <div :class="$style.root"/>
+  <div :class="$style.root">
+    <div :class="$style.image"
+         :style="{ backgroundImage: 'url(./FrameImage.jpg)' }"/>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -10,6 +13,18 @@
 @import "../../../css/variables.scss";
 
 .root {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: 18px 14px 24px 14px;
+  margin-right: 24px;
+  background-color: $main-color;
+  border: 1px solid #4D4D4D;
+  border-radius: 12px;
+}
 
+.image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>

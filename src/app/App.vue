@@ -10,7 +10,7 @@ import InventoryPage from './views/InventoryPage.vue'
 
 <style module lang="scss">
 .root {
-
+  height: 100%;
 }
 </style>
 

@@ -14,5 +14,9 @@ import { InventoryFrame } from '../components/InventoryFrame'
 .root {
   display: grid;
   grid-template-columns: 30% 70%;
+  padding: 32px;
+  box-sizing: border-box;
+  height: 100%;
+  // gap: 24px;
 }
 </style>
