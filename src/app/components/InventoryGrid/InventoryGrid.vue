@@ -41,29 +41,29 @@ const modal = ref<HTMLDivElement>()
 
 const isOpenModal = ref(true)
 
-onMounted(() => {
-  window.addEventListener('click', handleClick)
-})
+// onMounted(() => {
+//   window.addEventListener('click', handleClick)
+// })
 
-onUnmounted(() => {
-  window.removeEventListener('click', handleClick)
-})
+// onUnmounted(() => {
+//   window.removeEventListener('click', handleClick)
+// })
 
-function handleClick(e: Event) {
-  if (e.target instanceof HTMLElement) {
-    let element = e.target
-    console.log(modal)
+// function handleClick(e: Event) {
+//   if (e.target instanceof HTMLElement) {
+//     let element = e.target
+//     console.log(modal)
 
-    while (element.parentElement !== null) {
-      if (element === modal.value)
-        return
+//     while (element.parentElement !== null) {
+//       if (element === modal.value)
+//         return
 
-      element = element.parentElement
-    }
+//       element = element.parentElement
+//     }
 
-    isOpenModal.value = false
-  }
-}
+//     isOpenModal.value = false
+//   }
+// }
 </script>
 
 <style module lang="scss">

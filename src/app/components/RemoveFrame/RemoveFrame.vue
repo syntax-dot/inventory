@@ -2,14 +2,16 @@
   <div :class="$style.root">
     <input :class="$style.input"
            type="number"
-           placeholder="Введите количество">
+           placeholder="Введите количество"
+           max="5"
+           min="1">
     <div :class="$style.buttons">
       <button :class="$style.cancel"
-              @click="$emit('remove')">
+              @click="$emit('cancel')">
         Отмена
       </button>
       <button :class="$style.approve"
-              @click="$emit('remove')">
+              @click="$emit('approve')">
         Подтвердить
       </button>
     </div>
@@ -27,6 +29,7 @@
   grid-template-rows: max-content max-content;
   gap: 20px;
   margin: 6px;
+  margin: 20px 21px;
 }
 
 .input {

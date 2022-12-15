@@ -10,8 +10,11 @@
       <div v-for="div in 5"
            :class="$style.info_field"/>
     </div>
-    <RemoveButton v-if="isOpenModal && !isOpenRemove" @remove="isOpenRemove = !isOpenRemove"/>
-    <RemoveFrame v-if="isOpenModal && isOpenRemove"/>
+
+    <TransitionGroup name="actions" appear>
+      <RemoveButton v-if="isOpenModal && !isOpenRemove" @remove="isOpenRemove = !isOpenRemove"/>
+      <RemoveFrame v-if="isOpenModal && isOpenRemove" @cancel="isOpenRemove = false"/>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -80,6 +83,14 @@ const emit = defineEmits<ModalWindowEmits>()
 }
 
 .modal-leave-active {
+  animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse;
+}
+
+.actions-enter-active {
+  animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.actions-leave-active {
   animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse;
 }
 
