@@ -21,17 +21,17 @@
   display: grid;
   grid-template-rows: repeat(5, 20%);
   border-radius: 12px;
-  background-color: #4D4D4D;
+  background-color: $border-color;
   box-sizing: border-box;
   overflow: hidden;
   gap: 1px;
-  border: 1px solid #4D4D4D;
+  border: 1px solid $border-color;
 }
 
 .row {
   display: grid;
   gap: 1px;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 20%);
 }
 
 .column {

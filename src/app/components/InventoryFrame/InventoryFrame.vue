@@ -17,7 +17,7 @@
   padding: 18px 14px 24px 14px;
   margin-right: 24px;
   background-color: $main-color;
-  border: 1px solid #4D4D4D;
+  border: 1px solid $border-color;
   border-radius: 12px;
 }
 
