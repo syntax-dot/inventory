@@ -2,7 +2,8 @@
   <div :class="$style.root">
     <div :class="$style.inventory">
       <InventoryFrame/>
-      <InventoryGrid/>
+      <InventoryGrid v-if="items"
+                     :items="items"/>
     </div>
     <BottomFrame/>
   </div>
@@ -12,6 +13,14 @@
 import { InventoryGrid } from '../components/InventoryGrid'
 import { InventoryFrame } from '../components/InventoryFrame'
 import { BottomFrame } from '../components/BottomFrame'
+import { ref } from 'vue'
+import { Item } from '../types/Item'
+
+const items = ref<Item[]>([
+  { id: 1, color: '#7FAA65', position: { x: 1, y: 1 } },
+  { id: 2, color: '#AA9765', position: { x: 2, y: 1 } },
+  { id: 3, color: '#656CAA', position: { x: 3, y: 1 } },
+])
 </script>
 
 <style module lang="scss">
