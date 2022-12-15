@@ -13,21 +13,52 @@
                            item.position.y === rowPosition
                            &&
                            item.position.x === columnPosition)"
-                         :itemColor=""/>
+                         ref="item"
+                         @click="isOpenModal = !isOpenModal"/>
         </div>
       </div>
     </div>
-    <ModalWindow/>
+    <ModalWindow v-if="isOpenModal"
+                 ref="modal"/>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { onMounted, onUnmounted, ref } from 'vue'
 import { Item } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
 import { ModalWindow } from '../ModalWindow'
 import { InventoryGridProps } from './InventoryGrid.props'
 
 const props: Item[] = defineProps<InventoryGridProps>()
+
+const modal = ref<HTMLDivElement>()
+const item = ref<HTMLDivElement>()
+
+const isOpenModal = ref(false)
+
+onMounted(() => {
+  window.addEventListener('click', handleClick)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('click', handleClick)
+})
+
+function handleClick(e: Event) {
+  if (e.target instanceof HTMLElement) {
+    let element = e.target
+
+    while (element.parentElement !== null) {
+      if (element === modal.value || element === item.value)
+        return
+
+      element = element.parentElement
+    }
+
+    isOpenModal.value = false
+  }
+}
 </script>
 
 <style module lang="scss">

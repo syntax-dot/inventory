@@ -17,9 +17,9 @@ import { ref } from 'vue'
 import { Item } from '../types/Item'
 
 const items = ref<Item[]>([
-  { id: 1, color: '#7FAA65', position: { x: 1, y: 1 } },
-  { id: 2, color: '#AA9765', position: { x: 2, y: 1 } },
-  { id: 3, color: '#656CAA', position: { x: 3, y: 1 } },
+  { id: 1, color: '#7FAA65', amount: 4, position: { x: 1, y: 1 } },
+  { id: 2, color: '#AA9765', amount: 2, position: { x: 2, y: 1 } },
+  { id: 3, color: '#656CAA', amount: 5, position: { x: 3, y: 1 } },
 ])
 </script>
 

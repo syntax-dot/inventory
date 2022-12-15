@@ -4,6 +4,7 @@
     <!-- <div :class="$style.item"
          :style="{ 'background-color': itemColor }"/> -->
     <div :class="$style.item"/>
+    <div :class="$style.amount">{{ 5 }}</div>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { InventoryGridProps } from './InventoryItem.props'
 @import "../../../css/variables.scss";
 
 .root {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,5 +44,16 @@ import { InventoryGridProps } from './InventoryItem.props'
   // width: 80%;
   background-color: #7FAA65;
 
+}
+
+.amount {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 16px;
+  width: 16px;
+  color: $text-color-light;
+  border: 1px solid $border-color;
+  border-radius: 4px 0px 0px 0px;
 }
 </style>
