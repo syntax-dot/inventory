@@ -28,7 +28,7 @@
   border-radius: inherit;
   height: 36px;
   background: $skeleton-bg-color;
-  margin: 18px 22px 18px 18px;
+  margin: 18px 36px 18px 18px;
 }
 
 .close_icon {
