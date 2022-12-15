@@ -5,12 +5,15 @@
          :class="$style.row">
       <div v-for="column in 5"
            :key="column"
-           :class="$style.column"/>
+           :class="$style.column">
+        <InventoryItem/>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { InventoryItem } from '../InventoryItem'
 
 </script>
 
