@@ -15,11 +15,17 @@
 
 .root {
   display: grid;
+  height: 100vh;
   grid-template-rows: repeat(5, 20%);
+  border-radius: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid #4D4D4D;
 }
 
 .row {
   display: grid;
-  grid-template-columns: repeat(5, 20%);
+  background-color: $main-color;
+  grid-template-columns: repeat(5, 1fr);
 }
 </style>

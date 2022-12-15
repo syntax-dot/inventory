@@ -30,7 +30,7 @@ import InventoryPage from './views/InventoryPage.vue'
 #app,
 body,
 html {
-  // height: 100%;
+  height: 100%;
   width: 100%;
 }
 
