@@ -29,13 +29,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, toRef } from 'vue'
 import { Item, Position } from '../../types/Item'
+import { provideItem } from '../composition/item.injectable'
 import { InventoryItem } from '../InventoryItem'
 import { ModalWindow } from '../ModalWindow'
 import { InventoryGridProps } from './InventoryGrid.props'
 
-const props: Item[] = defineProps<InventoryGridProps>()
+const props = defineProps<InventoryGridProps>()
+
+provideItem(toRef(props, 'items'))
 
 const modal = ref<HTMLDivElement>()
 // const item = ref<HTMLDivElement>()
