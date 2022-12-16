@@ -7,7 +7,7 @@
          :key="item"
          :class="$style.item"/>
 
-    <div :class="$style.amount">{{ amount }}</div>
+    <div :class="$style.amount">{{ item.amount }}</div>
   </div>
 </template>
 

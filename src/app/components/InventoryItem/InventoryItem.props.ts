@@ -1,4 +1,5 @@
+import { Item } from '../../types/Item'
+
 export interface InventoryGridProps {
-  itemColor: string
-  amount: number
+  item: Item
 }

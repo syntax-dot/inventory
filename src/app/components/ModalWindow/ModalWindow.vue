@@ -48,6 +48,7 @@ function handleRemove(removeAmount: number) {
   display: grid;
   grid-template-rows: 1fr 1fr 14%;
   position: absolute;
+  border-radius: 0px 12px 12px 0px;
   box-sizing: border-box;
   padding: 18px 15px;
   right: 32px; // костыль?
@@ -57,6 +58,7 @@ function handleRemove(removeAmount: number) {
   background-color: rgba(38, 38, 38, 0.5);
   backdrop-filter: blur(8px);
   border: 1px solid $border-color;
+  overflow: hidden;
   z-index: 3;
 }
 
@@ -109,13 +111,11 @@ function handleRemove(removeAmount: number) {
 
 @keyframes slide-in-right {
   0% {
-    -webkit-transform: translateX(1000px);
-            transform: translateX(1000px);
+    transform: translateX(100%);
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }

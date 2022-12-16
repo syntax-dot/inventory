@@ -1,51 +1,47 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.grid">
-      <div v-for="rowPosition in 5"
-           :id="'' + rowPosition"
-           :key="rowPosition"
-           :class="$style.row">
-        <div v-for="columnPosition in 5"
-             :id="'' + columnPosition"
-             :key="columnPosition"
-             :class="$style.column"
-             @dragover.prevent
-             @dragenter.prevent>
-          <InventoryItem v-if="items.find(item =>
-                           item.position.y === rowPosition
-                           &&
-                           item.position.x === columnPosition)"
-                         ref="item"
-                         @click="isOpenModal = true"
-                         @dragstart="onDragStart($event, item)"/>
-        </div>
+      <div v-for="index in 25"
+           :id="'' + index"
+           :key="index"
+           :class="$style.item"
+           @drop="onDrop($event, index)"
+           @dragover.prevent
+           @dragenter.prevent>
+        <InventoryItem v-if="itemMap.has(index)"
+                       :item="itemMap.get(index)!"
+                       @click="isOpenModal = true"
+                       @dragstart="onDragStart($event, itemMap.get(index)!)"/>
       </div>
     </div>
-    <Transition name="modal" appear>
+    <transition name="modal" appear>
       <ModalWindow v-if="isOpenModal"
-                   ref="modal"
                    :isOpenModal="isOpenModal"
                    @close="isOpenModal = false"/>
-    </Transition>
+    </transition>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, toRef } from 'vue'
-import { Item, Position } from '../../types/Item'
-import { provideItem } from '../composition/item.injectable'
+import { ref, computed } from 'vue'
+import { Item } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
 import { ModalWindow } from '../ModalWindow'
 import { InventoryGridProps } from './InventoryGrid.props'
 
 const props = defineProps<InventoryGridProps>()
 
-// provideItem(toRef(props, 'items'))
+const isOpenModal = ref(false)
 
-const modal = ref<HTMLDivElement>()
-// const item = ref<HTMLDivElement>()
+const itemMap = computed(() => {
+  const res = new Map<number, Item>()
 
-const isOpenModal = ref(true)
+  props.items.forEach(item => {
+    res.set(item.position, item)
+  })
+
+  return res
+})
 
 // onMounted(() => {
 //   window.addEventListener('click', handleClick)
@@ -71,48 +67,49 @@ const isOpenModal = ref(true)
 //   }
 // }
 
-// function onDragStart(e: DragEvent, item: Item) {
-//   e.dataTransfer?.dropEffect = 'move'
-//   e.dataTransfer?.effectAllowed = 'move'
-//   e.dataTransfer?.setData('itemPosition', item.position.toString())
-// }
+function swap(fromIndex: number, toIndex: number) {
+  const items = [...props.items]
 
-// function onDrop(e: DragEvent, position: Position) {
-//   const itemPosition: Position = parseInt(e.dataTransfer?.getData('itemPosition'))
-//   itemPosition.x = item.position.x
-//   itemPosition.y = item.position.y
-//   localStorage.setItem('position', itemPosition)
-// }
+  items.find(item => item)
+}
+
+function onDragStart(e: DragEvent, item: Item) {
+  if (e.dataTransfer) {
+    e.dataTransfer.dropEffect = 'move'
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('fromIndex', item.position.toString())
+  }
+}
+
+function onDrop(e: DragEvent, toIndex: number) {
+  if (e.dataTransfer) {
+    const fromIndex = parseInt(e.dataTransfer.getData('fromIndex'))
+  }
+}
 </script>
 
 <style module lang="scss">
 @import "../../../css/variables.scss";
 
 .root {
-  // display: grid;
-  // grid-template-columns: max-content max-content;
+  overflow: hidden;
+  position: relative;
 }
 
 .grid {
   display: grid;
   grid-template-rows: repeat(5, 20%);
+  grid-template-columns: repeat(5, 20%);
   border-radius: 12px;
   background-color: $border-color;
   box-sizing: border-box;
   overflow: hidden;
   gap: 1px;
   border: 1px solid $border-color;
-
   height: 100%;
 }
 
-.row {
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(5, 20%);
-}
-
-.column {
+.item {
   background-color: $main-color;
 }
 </style>
