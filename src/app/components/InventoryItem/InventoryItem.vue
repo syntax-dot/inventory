@@ -1,20 +1,22 @@
 <template>
   <div :class="$style.root"
        draggable="true">
-    <!-- <div :class="$style.item"
-         :style="{ 'background-color': itemColor }"/> -->
-    <div v-for="item in 2"
-         :key="item"
+    <div :style="{ '--color': item.color }"
          :class="$style.item"/>
+    <div :style="{ '--color': item.color + '5a' }"
+         :class="[$style.item, $style.item_blur]"/>
 
-    <div :class="$style.amount">{{ item.amount }}</div>
+    <div v-if="isShowAmount"
+         :class="$style.amount">
+      {{ item.amount }}
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { InventoryGridProps } from './InventoryItem.props'
 
-defineProps<InventoryGridProps>()
+const props = defineProps<InventoryGridProps>()
 </script>
 
 <style module lang="scss">
@@ -44,20 +46,16 @@ defineProps<InventoryGridProps>()
   position: absolute;
   height: 48px;
   width: 48px;
-  // height: 80%;
-  // width: 80%;
-  background-color: #7FAA65;
+  background-color: var(--color);
   z-index: 1;
 
-  &:first-child {
+  &_blur {
     position: relative;
     transform: translate(6px, -6px);
-    opacity: 0.35;
     right: 0;
     backdrop-filter: blur(6px);
 
     z-index: 2;
-
   }
 
 }

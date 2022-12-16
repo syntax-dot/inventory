@@ -9,29 +9,37 @@
            @dragover.prevent
            @dragenter.prevent>
         <InventoryItem v-if="itemMap.has(index)"
+                       ref="item"
+                       :isShowAmount="true"
                        :item="itemMap.get(index)!"
-                       @click="isOpenModal = true"
+                       @click="modalCurrentItem = itemMap.get(index)!"
                        @dragstart="onDragStart($event, itemMap.get(index)!)"/>
       </div>
     </div>
     <transition name="modal" appear>
-      <ModalWindow v-if="isOpenModal"
-                   :isOpenModal="isOpenModal"
-                   @close="isOpenModal = false"/>
+      <ModalWindow v-if="modalCurrentItem"
+                   :item="modalCurrentItem"
+                   @close="modalCurrentItem = null"
+                   @remove="handleRemove"/>
     </transition>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { emit } from 'process'
 import { ref, computed } from 'vue'
 import { Item } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
 import { ModalWindow } from '../ModalWindow'
-import { InventoryGridProps } from './InventoryGrid.props'
+import { InventoryGridProps, InventoryGridEmits } from './InventoryGrid.props'
 
 const props = defineProps<InventoryGridProps>()
 
-const isOpenModal = ref(false)
+const item = ref()
+
+const emit = defineEmits<InventoryGridEmits>()
+
+const modalCurrentItem = ref<Item | null>(null)
 
 const itemMap = computed(() => {
   const res = new Map<number, Item>()
@@ -42,6 +50,16 @@ const itemMap = computed(() => {
 
   return res
 })
+
+function handleRemove(removeAmount: number) {
+  if (!modalCurrentItem.value)
+    return
+
+  emit('update', {
+    ...modalCurrentItem.value,
+    amount: modalCurrentItem.value.amount - removeAmount,
+  })
+}
 
 // onMounted(() => {
 //   window.addEventListener('click', handleClick)
@@ -68,9 +86,11 @@ const itemMap = computed(() => {
 // }
 
 function swap(fromIndex: number, toIndex: number) {
-  const items = [...props.items]
+  const from = itemMap.value.get(fromIndex)
+  const to = itemMap.value.get(toIndex)
 
-  items.find(item => item)
+  from && emit('update', { ...from, position: toIndex })
+  to && emit('update', { ...to, position: fromIndex })
 }
 
 function onDragStart(e: DragEvent, item: Item) {
@@ -84,6 +104,7 @@ function onDragStart(e: DragEvent, item: Item) {
 function onDrop(e: DragEvent, toIndex: number) {
   if (e.dataTransfer) {
     const fromIndex = parseInt(e.dataTransfer.getData('fromIndex'))
+    swap(fromIndex, toIndex)
   }
 }
 </script>

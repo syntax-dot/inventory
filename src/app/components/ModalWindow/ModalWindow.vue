@@ -1,21 +1,21 @@
 <template>
-  <div v-if="isOpenModal === true"
-       :class="$style.root">
+  <div :class="$style.root">
     <img :class="$style.close"
          src="../../../assets/icons/close.svg"
          alt="Close"
          @click="emit('close')">
-    <div :class="$style.item"/>
+    <InventoryItem :item="item"
+                   :isShowAmount="false"/>
 
     <SkeletonLoader :rows="6"/>
 
     <TransitionGroup name="actions" appear>
-      <RemoveButton v-if="isOpenModal && !isOpenRemove"
+      <RemoveButton v-if="!isOpenRemove"
                     @remove="isOpenRemove = !isOpenRemove"/>
-      <RemoveFrame v-if="isOpenModal && isOpenRemove"
-                   :amount="5"
+      <RemoveFrame v-if="isOpenRemove"
+                   :amount="item.amount"
                    @cancel="isOpenRemove = false"
-                   @approve="handleRemove(value)"/>
+                   @approve="handleRemove"/>
     </TransitionGroup>
   </div>
 </template>
@@ -26,18 +26,17 @@ import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 import { RemoveButton } from '../RemoveButton'
 import { RemoveFrame } from '../RemoveFrame'
 import { SkeletonLoader } from '../SkeletonLoader'
-import { injectItem } from '../../composition/item.injectable'
+import { InventoryItem } from '../InventoryItem'
 
-// const isOpenModal = ref(false)
 const isOpenRemove = ref(false)
 
 defineProps<ModalWindowProps>()
 const emit = defineEmits<ModalWindowEmits>()
 
-// const injectableItem = injectItem()
-
 function handleRemove(removeAmount: number) {
-  injectableItem.value.amount = -removeAmount
+  emit('remove', removeAmount)
+
+  isOpenRemove.value = false
 }
 </script>
 
@@ -51,10 +50,10 @@ function handleRemove(removeAmount: number) {
   border-radius: 0px 12px 12px 0px;
   box-sizing: border-box;
   padding: 18px 15px;
-  right: 32px; // костыль?
-  top: 32px; // костыль?
-  bottom: 128px; // костыль?
-  width: 33%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
   background-color: rgba(38, 38, 38, 0.5);
   backdrop-filter: blur(8px);
   border: 1px solid $border-color;

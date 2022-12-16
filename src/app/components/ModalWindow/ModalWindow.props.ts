@@ -1,9 +1,9 @@
 import { Item } from '../../types/Item'
 export interface ModalWindowProps {
-  isOpenModal: boolean
-  item?: Item // Костыль
+  item: Item
 }
 
 export interface ModalWindowEmits {
   (emit: 'close'): void
+  (emit: 'remove', value: number): void
 }

@@ -3,7 +3,8 @@
     <div :class="$style.inventory">
       <InventoryFrame/>
       <InventoryGrid v-if="items"
-                     :items="items"/>
+                     :items="items"
+                     @update="handleUpdate"/>
     </div>
     <BottomFrame/>
   </div>
@@ -13,14 +14,29 @@
 import { InventoryGrid } from '../components/InventoryGrid'
 import { InventoryFrame } from '../components/InventoryFrame'
 import { BottomFrame } from '../components/BottomFrame'
-import { ref } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { Item } from '../types/Item'
+import { InventoryStore } from '../store/Inventory.store'
 
-const items = ref<Item[]>([
-  { id: 1, color: '#7FAA65', amount: 4, position: 1 },
-  { id: 2, color: '#AA9765', amount: 2, position: 2 },
-  { id: 3, color: '#656CAA', amount: 5, position: 8 },
-])
+const inventoryStore = new InventoryStore()
+
+const items = ref<Item[]>(inventoryStore.load())
+
+function handleUpdate(item: Item) {
+  items.value = [...items.value.filter(it => it.id !== item.id), item]
+}
+
+watch(items, inventoryStore.save)
+
+onMounted(() => {
+  if (!items.value.length) {
+    items.value = [
+      { id: 1, color: '#7FAA65', amount: 4, position: 1 },
+      { id: 2, color: '#AA9765', amount: 2, position: 2 },
+      { id: 3, color: '#656CAA', amount: 5, position: 8 },
+    ]
+  }
+})
 </script>
 
 <style module lang="scss">
@@ -35,7 +51,7 @@ const items = ref<Item[]>([
 
 .inventory{
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: max-content 1fr;
   // gap: 24px;
 }
 </style>
