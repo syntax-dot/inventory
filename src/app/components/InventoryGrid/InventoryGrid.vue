@@ -2,9 +2,11 @@
   <div :class="$style.root">
     <div :class="$style.grid">
       <div v-for="rowPosition in 5"
+           :id="'' + rowPosition"
            :key="rowPosition"
            :class="$style.row">
         <div v-for="columnPosition in 5"
+             :id="'' + columnPosition"
              :key="columnPosition"
              :class="$style.column"
              @dragover.prevent
@@ -38,7 +40,7 @@ import { InventoryGridProps } from './InventoryGrid.props'
 
 const props = defineProps<InventoryGridProps>()
 
-provideItem(toRef(props, 'items'))
+// provideItem(toRef(props, 'items'))
 
 const modal = ref<HTMLDivElement>()
 // const item = ref<HTMLDivElement>()
@@ -77,6 +79,9 @@ const isOpenModal = ref(true)
 
 // function onDrop(e: DragEvent, position: Position) {
 //   const itemPosition: Position = parseInt(e.dataTransfer?.getData('itemPosition'))
+//   itemPosition.x = item.position.x
+//   itemPosition.y = item.position.y
+//   localStorage.setItem('position', itemPosition)
 // }
 </script>
 

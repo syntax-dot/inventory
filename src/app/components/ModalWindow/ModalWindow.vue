@@ -34,7 +34,7 @@ const isOpenRemove = ref(false)
 defineProps<ModalWindowProps>()
 const emit = defineEmits<ModalWindowEmits>()
 
-const injectableItem = injectItem()
+// const injectableItem = injectItem()
 
 function handleRemove(removeAmount: number) {
   injectableItem.value.amount = -removeAmount
