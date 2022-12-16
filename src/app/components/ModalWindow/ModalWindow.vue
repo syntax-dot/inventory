@@ -6,10 +6,8 @@
          alt="Close"
          @click="emit('close')">
     <div :class="$style.item"/>
-    <div :class="$style.info">
-      <div v-for="div in 6"
-           :class="$style.info_field"/>
-    </div>
+
+    <SkeletonLoader :rows="6"/>
 
     <TransitionGroup name="actions" appear>
       <RemoveButton v-if="isOpenModal && !isOpenRemove" @remove="isOpenRemove = !isOpenRemove"/>
@@ -23,9 +21,10 @@ import { ref } from 'vue'
 import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 import { RemoveButton } from '../RemoveButton'
 import { RemoveFrame } from '../RemoveFrame'
+import { SkeletonLoader } from '../SkeletonLoader'
 
-const isOpenModal = ref(true)
-const isOpenRemove = ref(true)
+// const isOpenModal = ref(false)
+const isOpenRemove = ref(false)
 
 defineProps<ModalWindowProps>()
 const emit = defineEmits<ModalWindowEmits>()

@@ -14,7 +14,8 @@
                            &&
                            item.position.x === columnPosition)"
                          ref="item"
-                         @click="isOpenModal = true"/>
+                         @click="isOpenModal = true"
+                         @dragstart="onDragStart($event, item)"/>
         </div>
       </div>
     </div>
@@ -28,8 +29,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue'
-import { Item } from '../../types/Item'
+import { ref } from 'vue'
+import { Item, Position } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
 import { ModalWindow } from '../ModalWindow'
 import { InventoryGridProps } from './InventoryGrid.props'
@@ -63,6 +64,16 @@ const isOpenModal = ref(true)
 
 //     isOpenModal.value = false
 //   }
+// }
+
+// function onDragStart(e: DragEvent, item: Item) {
+//   e.dataTransfer?.dropEffect = 'move'
+//   e.dataTransfer?.effectAllowed = 'move'
+//   e.dataTransfer?.setData('itemPosition', item.position.toString())
+// }
+
+// function onDrop(e: DragEvent, position: Position) {
+//   const itemPosition: Position = parseInt(e.dataTransfer?.getData('itemPosition'))
 // }
 </script>
 
