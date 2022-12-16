@@ -1,5 +1,5 @@
 import { inject, InjectionKey, provide, ref, Ref, watch } from 'vue'
-import { Item } from '../../types/Item'
+import { Item } from '../types/Item'
 
 const itemKey: InjectionKey<Ref<Item>> = Symbol('item')
 
@@ -13,7 +13,7 @@ export function provideItem(initialUser: Ref<Item>) {
   return item
 }
 
-export function injectUser() {
+export function injectItem() {
   const user = inject(itemKey)
 
   if (!user)

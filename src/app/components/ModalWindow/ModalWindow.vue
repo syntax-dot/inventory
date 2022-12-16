@@ -26,12 +26,15 @@ import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 import { RemoveButton } from '../RemoveButton'
 import { RemoveFrame } from '../RemoveFrame'
 import { SkeletonLoader } from '../SkeletonLoader'
+import { injectItem } from '../../composition/item.injectable'
 
 // const isOpenModal = ref(false)
 const isOpenRemove = ref(false)
 
 defineProps<ModalWindowProps>()
 const emit = defineEmits<ModalWindowEmits>()
+
+const item = injectItem()
 
 function handleRemove(removeAmount: number) {
   item.amount
