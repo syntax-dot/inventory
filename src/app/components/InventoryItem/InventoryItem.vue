@@ -7,14 +7,14 @@
          :key="item"
          :class="$style.item"/>
 
-    <div :class="$style.amount">{{ 5 }}</div>
+    <div :class="$style.amount">{{ amount }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { InventoryGridProps } from './InventoryItem.props'
 
-// defineProps<InventoryGridProps>()
+defineProps<InventoryGridProps>()
 </script>
 
 <style module lang="scss">

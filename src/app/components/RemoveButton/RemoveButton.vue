@@ -1,8 +1,10 @@
 <template>
-  <button :class="$style.root"
-          @click="$emit('remove')">
-    Удалить предмет
-  </button>
+  <div :class="$style.root">
+    <button :class="$style.btn"
+            @click="$emit('remove')">
+      Удалить предмет
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -10,13 +12,20 @@
 </script>
 
 <style module lang="scss">
+@import '../../../css/variables.scss';
+
 .root {
-  position: absolute;
+  display: block;
+  align-self: self-end;
   right: 0;
   left: 0;
   bottom: 0;
-  margin: 18px 15px;
+  padding-top: 18px;
+  border-top: 1px solid $border-color;
   box-sizing: border-box;
+}
+.btn {
+  width: 100%;
   height: 39px;
   border-radius: 8px;
   background-color: #FA7272;

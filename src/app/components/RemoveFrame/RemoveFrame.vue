@@ -5,7 +5,7 @@
            :class="$style.input"
            type="number"
            placeholder="Введите количество"
-           :max="5"
+           :max="amount"
            min="1"
            @input="handleInput(removeCount)">
     <div :class="$style.buttons">
