@@ -1,6 +1,8 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.image"/>
+    <div :class="$style.image">
+      <div :class="$style.blur"/>
+    </div>
     <SkeletonLoader :rows="7"/>
   </div>
 </template>
@@ -31,7 +33,14 @@ import { SkeletonLoader } from '../SkeletonLoader'
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  backdrop-filter: blur(6px);
   border-radius: 8px;
+}
+
+.blur {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  backdrop-filter: blur(6px);
+  background: transparent;
 }
 </style>
