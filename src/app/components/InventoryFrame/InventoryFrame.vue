@@ -1,10 +1,12 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.image"/>
+    <SkeletonLoader :rows="7"/>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { SkeletonLoader } from '../SkeletonLoader'
 
 </script>
 
@@ -14,6 +16,7 @@
 .root {
   display: grid;
   grid-template-rows: 1fr 1fr;
+  gap: 4px;
   padding: 18px 14px 24px 14px;
   margin-right: 24px;
   background-color: $main-color;

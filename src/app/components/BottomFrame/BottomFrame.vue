@@ -27,8 +27,10 @@
 .field {
   border-radius: inherit;
   height: 36px;
-  background: $skeleton-bg-color;
   margin: 18px 36px 18px 18px;
+
+  @include background-gradient;
+  animation: shine-lines $animation-duration infinite linear;
 }
 
 .close_icon {

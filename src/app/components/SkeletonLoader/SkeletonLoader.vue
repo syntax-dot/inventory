@@ -27,16 +27,12 @@ defineProps<SkeletonLoaderProps>()
 }
 
 .row {
+  min-height: 10px;
   width: 100%;
   border-radius: 4px;
 
   @include background-gradient;
   animation: shine-lines $animation-duration infinite linear;
-
-  &:first-child {
-    border-radius: 8px;
-    height: 30px;
-  }
 
   &:nth-last-child(2) {
     width: 80%;
@@ -45,15 +41,11 @@ defineProps<SkeletonLoaderProps>()
   &:last-child {
     width: 30%;
   }
-}
 
-@keyframes shine-lines {
-  0% {
-    background-position: 0
-  }
-
-  100% {
-    background-position: 600px
+  &:first-child {
+    border-radius: 8px;
+    height: 30px;
+    width: 100%;
   }
 }
 </style>
