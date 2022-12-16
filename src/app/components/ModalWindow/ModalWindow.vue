@@ -4,8 +4,11 @@
          src="../../../assets/icons/close.svg"
          alt="Close"
          @click="emit('close')">
-    <InventoryItem :item="item"
-                   :isShowAmount="false"/>
+    <div :class="$style.item">
+      <InventoryItem :item="item"
+                     :size="Size.BIG"
+                     :isShowAmount="false"/>
+    </div>
 
     <SkeletonLoader :rows="6"/>
 
@@ -27,6 +30,7 @@ import { RemoveButton } from '../RemoveButton'
 import { RemoveFrame } from '../RemoveFrame'
 import { SkeletonLoader } from '../SkeletonLoader'
 import { InventoryItem } from '../InventoryItem'
+import { Size } from '../InventoryItem/InventoryItem.props'
 
 const isOpenRemove = ref(false)
 
@@ -53,7 +57,7 @@ function handleRemove(removeAmount: number) {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 250px;
+  min-width: 250px;
   background-color: rgba(38, 38, 38, 0.5);
   backdrop-filter: blur(8px);
   border: 1px solid $border-color;
@@ -65,6 +69,7 @@ function handleRemove(removeAmount: number) {
   position: absolute;
   right: 14px;
   top: 14px;
+  z-index: 3;
 
   &:hover {
     scale: 1.1;
@@ -73,6 +78,7 @@ function handleRemove(removeAmount: number) {
 
 .item {
   border-bottom: 1px solid $border-color;
+  // pointer-events: none;
 }
 
 .info {

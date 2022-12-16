@@ -4,24 +4,25 @@
       <div v-for="index in 25"
            :id="'' + index"
            :key="index"
-           :class="$style.item"
+           :class="$style.cell"
            @drop="onDrop($event, index)"
            @dragover.prevent
            @dragenter.prevent>
         <InventoryItem v-if="itemMap.has(index)"
                        ref="item"
+                       :size="Size.SMALL"
                        :isShowAmount="true"
                        :item="itemMap.get(index)!"
                        @click="modalCurrentItem = itemMap.get(index)!"
                        @dragstart="onDragStart($event, itemMap.get(index)!)"/>
       </div>
     </div>
-    <transition name="modal" appear>
+    <Transition name="modal" appear>
       <ModalWindow v-if="modalCurrentItem"
                    :item="modalCurrentItem"
                    @close="modalCurrentItem = null"
                    @remove="handleRemove"/>
-    </transition>
+    </Transition>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import { emit } from 'process'
 import { ref, computed } from 'vue'
 import { Item } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
+import { Size } from '../InventoryItem/InventoryItem.props'
 import { ModalWindow } from '../ModalWindow'
 import { InventoryGridProps, InventoryGridEmits } from './InventoryGrid.props'
 
@@ -61,30 +63,6 @@ function handleRemove(removeAmount: number) {
   })
 }
 
-// onMounted(() => {
-//   window.addEventListener('click', handleClick)
-// })
-
-// onUnmounted(() => {
-//   window.removeEventListener('click', handleClick)
-// })
-
-// function handleClick(e: Event) {
-//   if (e.target instanceof HTMLElement) {
-//     let element = e.target
-//     console.log(modal)
-
-//     while (element.parentElement !== null) {
-//       if (element === modal.value)
-//         return
-
-//       element = element.parentElement
-//     }
-
-//     isOpenModal.value = false
-//   }
-// }
-
 function swap(fromIndex: number, toIndex: number) {
   const from = itemMap.value.get(fromIndex)
   const to = itemMap.value.get(toIndex)
@@ -115,6 +93,8 @@ function onDrop(e: DragEvent, toIndex: number) {
 .root {
   overflow: hidden;
   position: relative;
+  min-width: 525px;
+  min-height: 500px;
 }
 
 .grid {
@@ -130,7 +110,9 @@ function onDrop(e: DragEvent, toIndex: number) {
   height: 100%;
 }
 
-.item {
+.cell {
   background-color: $main-color;
+  min-height: 105px;
+  min-width: 99px;
 }
 </style>

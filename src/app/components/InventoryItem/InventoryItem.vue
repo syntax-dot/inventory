@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.root"
        draggable="true">
-    <div :style="{ '--color': item.color }"
+    <div :style="{ '--color': item.color, '--size': size + 'px' }"
          :class="$style.item"/>
-    <div :style="{ '--color': item.color + '5a' }"
+    <div :style="{ '--color': item.color + '5a', '--size': size + 'px' }"
          :class="[$style.item, $style.item_blur]"/>
 
     <div v-if="isShowAmount"
@@ -43,8 +43,8 @@ defineProps<InventoryGridProps>()
 
 .item {
   position: absolute;
-  height: 48px;
-  width: 48px;
+  height: var(--size);
+  width: var(--size);
   background-color: var(--color);
   z-index: 1;
 
@@ -53,10 +53,7 @@ defineProps<InventoryGridProps>()
     transform: translate(6px, -6px);
     right: 0;
     backdrop-filter: blur(6px);
-
-    z-index: 2;
   }
-
 }
 
 .amount {

@@ -15,6 +15,7 @@ import { SkeletonLoader } from '../SkeletonLoader'
 
 .root {
   display: grid;
+  box-sizing: border-box;
   grid-template-rows: 1fr 1fr;
   gap: 4px;
   min-width: 236px;
