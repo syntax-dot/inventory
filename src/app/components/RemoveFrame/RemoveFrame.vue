@@ -1,17 +1,22 @@
 <template>
   <div :class="$style.root">
-    <input :class="$style.input"
+    <input ref="input"
+           v-model="removeCount"
+           :class="$style.input"
            type="number"
            placeholder="Введите количество"
-           max="5"
-           min="1">
+           :max="5"
+           min="1"
+           @input="handleInput(removeCount)">
     <div :class="$style.buttons">
       <button :class="$style.cancel"
-              @click="$emit('cancel')">
+              @click="emit('cancel')">
         Отмена
       </button>
-      <button :class="$style.approve"
-              @click="$emit('approve')">
+      <button :class="[$style.approve, {
+                [$style.disabled]: removeCount > amount
+              }]"
+              @click="handleApprove(removeCount)">
         Подтвердить
       </button>
     </div>
@@ -19,7 +24,26 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { RemoveFrameProps, RemoveFrameEmits } from './RemoveFrame.props'
 
+const input = ref<HTMLInputElement>()
+const removeCount = ref(0)
+
+const props = defineProps<RemoveFrameProps>()
+const emit = defineEmits<RemoveFrameEmits>()
+
+function handleApprove(removeCount: number) {
+  if (removeCount > props.amount)
+    return
+
+  emit('approve', removeCount)
+}
+
+function handleInput(removeCount: number) {
+  // if (removeCount > props.amount)
+  // input.value?.style.background: '#000';
+}
 </script>
 
 <style module lang="scss">
@@ -84,5 +108,11 @@
   &:hover {
     background-color: rgba(255, 0, 0, 0.5);
   }
+}
+
+.disabled {
+  cursor: default;
+  pointer-events: none;
+  background-color: rgba(255, 0, 0, 0.1);
 }
 </style>

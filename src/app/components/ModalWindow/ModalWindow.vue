@@ -10,8 +10,12 @@
     <SkeletonLoader :rows="6"/>
 
     <TransitionGroup name="actions" appear>
-      <RemoveButton v-if="isOpenModal && !isOpenRemove" @remove="isOpenRemove = !isOpenRemove"/>
-      <RemoveFrame v-if="isOpenModal && isOpenRemove" @cancel="isOpenRemove = false"/>
+      <RemoveButton v-if="isOpenModal && !isOpenRemove"
+                    @remove="isOpenRemove = !isOpenRemove"/>
+      <RemoveFrame v-if="isOpenModal && isOpenRemove"
+                   :amount="5"
+                   @cancel="isOpenRemove = false"
+                   @approve="handleRemove(value)"/>
     </TransitionGroup>
   </div>
 </template>
@@ -28,6 +32,10 @@ const isOpenRemove = ref(false)
 
 defineProps<ModalWindowProps>()
 const emit = defineEmits<ModalWindowEmits>()
+
+function handleRemove(removeAmount: number) {
+  item.amount
+}
 </script>
 
 <style module lang="scss">
@@ -35,7 +43,7 @@ const emit = defineEmits<ModalWindowEmits>()
 
 .root {
   display: grid;
-  grid-template-rows: 220px 208px max-content;
+  grid-template-rows: 1fr 1fr 14%;
   position: absolute;
   box-sizing: border-box;
   padding: 18px 15px;
@@ -46,6 +54,7 @@ const emit = defineEmits<ModalWindowEmits>()
   background-color: rgba(38, 38, 38, 0.5);
   backdrop-filter: blur(8px);
   border: 1px solid $border-color;
+  z-index: 3;
 }
 
 .close {

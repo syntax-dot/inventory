@@ -3,7 +3,10 @@
        draggable="true">
     <!-- <div :class="$style.item"
          :style="{ 'background-color': itemColor }"/> -->
-    <div :class="$style.item"/>
+    <div v-for="item in 2"
+         :key="item"
+         :class="$style.item"/>
+
     <div :class="$style.amount">{{ 5 }}</div>
   </div>
 </template>
@@ -38,11 +41,24 @@ import { InventoryGridProps } from './InventoryItem.props'
 }
 
 .item {
+  position: absolute;
   height: 48px;
   width: 48px;
   // height: 80%;
   // width: 80%;
   background-color: #7FAA65;
+  z-index: 1;
+
+  &:first-child {
+    position: relative;
+    transform: translate(6px, -6px);
+    opacity: 0.35;
+    right: 0;
+    backdrop-filter: blur(6px);
+
+    z-index: 2;
+
+  }
 
 }
 
