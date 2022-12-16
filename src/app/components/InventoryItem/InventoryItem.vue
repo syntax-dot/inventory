@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { InventoryGridProps } from './InventoryItem.props'
 
-const props = defineProps<InventoryGridProps>()
+defineProps<InventoryGridProps>()
 </script>
 
 <style module lang="scss">
@@ -37,7 +37,6 @@ const props = defineProps<InventoryGridProps>()
   }
 
   &:active {
-    // border: 1px solid $border-color;
     cursor: url(../../../assets/cursors/hand-grab.svg), pointer;
   }
 }
