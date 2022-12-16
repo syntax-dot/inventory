@@ -1,6 +1,10 @@
 <template>
-  <div :class="$style.root"
-       draggable="true">
+  <div :class="[$style.root, {
+         [$style.dragging]: asd
+       }]"
+       draggable="true"
+       @mousedown="asd = true"
+       @mouseup="asd = false">
     <div :style="{ '--color': item.color, '--size': size + 'px' }"
          :class="$style.item"/>
     <div :style="{ '--color': item.color + '5a', '--size': size + 'px' }"
@@ -14,9 +18,12 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { InventoryGridProps } from './InventoryItem.props'
 
 defineProps<InventoryGridProps>()
+
+const asd = ref(false)
 </script>
 
 <style module lang="scss">
@@ -68,5 +75,9 @@ defineProps<InventoryGridProps>()
   color: $text-color-light;
   border: 1px solid $border-color;
   border-radius: 4px 0px 0px 0px;
+}
+
+.dragging {
+  // background-color: red !important;
 }
 </style>

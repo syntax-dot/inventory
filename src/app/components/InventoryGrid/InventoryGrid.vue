@@ -2,19 +2,18 @@
   <div :class="$style.root">
     <div :class="$style.grid">
       <div v-for="index in 25"
-           :id="'' + index"
            :key="index"
            :class="$style.cell"
            @drop="onDrop($event, index)"
            @dragover.prevent
            @dragenter.prevent>
         <InventoryItem v-if="itemMap.has(index)"
-                       ref="item"
                        :size="Size.SMALL"
                        :isShowAmount="true"
                        :item="itemMap.get(index)!"
+                       :isDragging="draggingIndex === index"
                        @click="modalCurrentItem = itemMap.get(index)!"
-                       @dragstart="onDragStart($event, itemMap.get(index)!)"/>
+                       @dragstart="onDragStart($event, index)"/>
       </div>
     </div>
     <Transition name="modal" appear>
@@ -27,8 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { emit } from 'process'
-import { ref, computed } from 'vue'
+import { ref, computed, useCssVars, useCssModule } from 'vue'
 import { Item } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
 import { Size } from '../InventoryItem/InventoryItem.props'
@@ -37,7 +35,7 @@ import { InventoryGridProps, InventoryGridEmits } from './InventoryGrid.props'
 
 const props = defineProps<InventoryGridProps>()
 
-const item = ref()
+const draggingIndex = ref<number | null>(null)
 
 const emit = defineEmits<InventoryGridEmits>()
 
@@ -71,18 +69,23 @@ function swap(fromIndex: number, toIndex: number) {
   to && emit('update', { ...to, position: fromIndex })
 }
 
-function onDragStart(e: DragEvent, item: Item) {
-  if (e.dataTransfer) {
+const style = useCssModule()
+console.log(style)
+
+function onDragStart(e: DragEvent, index: number) {
+  if (e.dataTransfer && e.target) {
     e.dataTransfer.dropEffect = 'move'
     e.dataTransfer.effectAllowed = 'move'
-    e.dataTransfer.setData('fromIndex', item.position.toString())
+
+    draggingIndex.value = index
   }
 }
 
 function onDrop(e: DragEvent, toIndex: number) {
-  if (e.dataTransfer) {
-    const fromIndex = parseInt(e.dataTransfer.getData('fromIndex'))
-    swap(fromIndex, toIndex)
+  if (e.dataTransfer && draggingIndex.value) {
+    swap(draggingIndex.value, toIndex)
+
+    draggingIndex.value = null
   }
 }
 </script>
@@ -114,5 +117,9 @@ function onDrop(e: DragEvent, toIndex: number) {
   background-color: $main-color;
   min-height: 105px;
   min-width: 99px;
+}
+
+.dragging {
+  // background-color: red !important;
 }
 </style>
