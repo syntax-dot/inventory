@@ -3,10 +3,10 @@ import { Item } from '../types/Item'
 
 const itemKey: InjectionKey<Ref<Item>> = Symbol('item')
 
-export function provideItem(initialUser: Ref<Item>) {
-  const item = ref<Item>({ ...initialUser.value })
+export function provideItem(initialItem: Ref<Item>) {
+  const item = ref<Item>({ ...initialItem.value })
 
-  watch(initialUser, value => item.value = value)
+  watch(initialItem, value => item.value = value)
 
   provide(itemKey, item)
 
