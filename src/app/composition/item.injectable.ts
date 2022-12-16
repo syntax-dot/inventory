@@ -14,10 +14,10 @@ export function provideItem(initialItem: Ref<Item>) {
 }
 
 export function injectItem() {
-  const user = inject(itemKey)
+  const item = inject(itemKey)
 
-  if (!user)
+  if (!item)
     throw new Error(`injection key ${itemKey} not found`)
 
-  return user
+  return item
 }
