@@ -11,7 +11,6 @@
                        :size="Size.SMALL"
                        :isShowAmount="true"
                        :item="itemMap.get(index)!"
-                       :isDragging="draggingIndex === index"
                        @click="modalCurrentItem = itemMap.get(index)!"
                        @dragstart="onDragStart($event, index)"/>
       </div>
@@ -26,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, useCssVars, useCssModule } from 'vue'
+import { ref, computed, useCssModule } from 'vue'
 import { Item } from '../../types/Item'
 import { InventoryItem } from '../InventoryItem'
 import { Size } from '../InventoryItem/InventoryItem.props'
@@ -117,9 +116,5 @@ function onDrop(e: DragEvent, toIndex: number) {
   background-color: $main-color;
   min-height: 105px;
   min-width: 99px;
-}
-
-.dragging {
-  // background-color: red !important;
 }
 </style>

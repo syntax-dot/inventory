@@ -78,7 +78,7 @@ function handleRemove(removeAmount: number) {
 
 .item {
   border-bottom: 1px solid $border-color;
-  // pointer-events: none;
+  pointer-events: none;
 }
 
 .info {

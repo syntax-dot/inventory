@@ -9,5 +9,4 @@ export interface InventoryGridProps {
   item: Item
   isShowAmount: boolean
   size: Size
-  isDragging?: boolean
 }
