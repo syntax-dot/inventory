@@ -22,7 +22,6 @@ defineProps<SkeletonLoaderProps>()
   justify-items: center;
   padding: 16px 5px 21px 5px;
   box-sizing: border-box;
-
   overflow: hidden;
 }
 
