@@ -47,8 +47,8 @@ onMounted(() => {
   box-sizing: border-box;
   height: 100%;
   cursor: url(../../assets/cursors/cursor.svg), pointer;
-  max-width: 660px;
-  max-height: 849px;
+  // max-width: 660px;
+  // max-height: 849px;
 }
 
 .inventory{

@@ -15,8 +15,6 @@ import InventoryPage from './views/InventoryPage.vue'
 </style>
 
 <style lang="scss">
-@import "../css/variables.scss";
-
 :root {
   font-size: 62.5%;
 }
