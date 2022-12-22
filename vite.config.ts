@@ -15,6 +15,12 @@ export default defineConfig({
     modules: {
       generateScopedName,
     },
+
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import \'./src/css/variables.scss\';',
+      },
+    },
   },
 
   plugins: [
