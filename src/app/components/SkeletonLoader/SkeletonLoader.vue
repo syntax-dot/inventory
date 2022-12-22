@@ -13,8 +13,6 @@ defineProps<SkeletonLoaderProps>()
 </script>
 
 <style module lang="scss">
-@import "../../../css/variables.scss";
-
 .root {
   display: grid;
   grid-auto-flow: row;

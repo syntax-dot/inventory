@@ -47,7 +47,6 @@ function handleInput(removeCount: number) {
 </script>
 
 <style module lang="scss">
-@import "../../../css/variables.scss";
 .root {
   position: absolute;
   right: 0;

@@ -45,8 +45,6 @@ function handleRemove(removeAmount: number) {
 </script>
 
 <style module lang="scss">
-@import "../../../css/variables.scss";
-
 .root {
   display: grid;
   grid-template-rows: 1fr 1fr 14%;

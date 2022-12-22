@@ -12,8 +12,6 @@
 </script>
 
 <style module lang="scss">
-@import "../../../css/variables.scss";
-
 .root {
   display: grid;
   grid-template-columns: 1fr max-content;

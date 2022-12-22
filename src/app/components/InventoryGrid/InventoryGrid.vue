@@ -90,8 +90,6 @@ function onDrop(e: DragEvent, toIndex: number) {
 </script>
 
 <style module lang="scss">
-@import "../../../css/variables.scss";
-
 .root {
   overflow: hidden;
   position: relative;

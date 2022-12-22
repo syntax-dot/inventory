@@ -20,8 +20,6 @@ defineProps<InventoryGridProps>()
 </script>
 
 <style module lang="scss">
-@import "../../../css/variables.scss";
-
 .root {
   position: relative;
   display: flex;
