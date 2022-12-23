@@ -1,15 +1,14 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.image">
-      <div :class="$style.blur"/>
+      <div :class="$style.blur" />
     </div>
-    <SkeletonLoader :rows="7"/>
+    <SkeletonLoader :rows="7" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { SkeletonLoader } from '../SkeletonLoader'
-
 </script>
 
 <style module lang="scss">
