@@ -1,21 +1,23 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.inventory">
-      <InventoryFrame/>
-      <InventoryGrid v-if="items"
-                     :items="items"
-                     @update="handleUpdate"/>
+      <InventoryFrame />
+      <InventoryGrid
+        v-if="items"
+        :items="items"
+        @update="handleUpdate"
+      />
     </div>
-    <BottomFrame/>
+    <BottomFrame />
   </div>
 </template>
 
 <script lang="ts" setup>
+import { onMounted, ref, watch } from 'vue'
 import { InventoryGrid } from '../components/InventoryGrid'
 import { InventoryFrame } from '../components/InventoryFrame'
 import { BottomFrame } from '../components/BottomFrame'
-import { ref, watch, onMounted } from 'vue'
-import { Item } from '../types/Item'
+import type { Item } from '../types/Item'
 import { InventoryStore } from '../store/Inventory.store'
 
 const inventoryStore = new InventoryStore()
