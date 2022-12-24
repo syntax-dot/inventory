@@ -1,41 +1,33 @@
 <template>
   <div :class="$style.root">
-    <img :class="$style.close"
-         src="../../../assets/icons/close.svg"
-         alt="Close"
-         @click="emit('close')">
+    <img :class="$style.close" src="../../../assets/icons/close.svg" alt="Close" @click="emit('close')">
     <div :class="$style.item">
-      <InventoryItem :item="item"
-                     :size="Size.BIG"
-                     :isShowAmount="false"/>
+      <InventoryItem :item="item" :size="Size.BIG" :is-show-amount="false" />
     </div>
 
-    <SkeletonLoader :rows="6"/>
+    <SkeletonLoader :rows="6" />
 
     <TransitionGroup name="actions" appear>
-      <RemoveButton v-if="!isOpenRemove"
-                    @remove="isOpenRemove = !isOpenRemove"/>
-      <RemoveFrame v-if="isOpenRemove"
-                   :amount="item.amount"
-                   @cancel="isOpenRemove = false"
-                   @approve="handleRemove"/>
+      <RemoveButton v-if="!isOpenRemove" @remove="isOpenRemove = !isOpenRemove" />
+      <RemoveFrame v-if="isOpenRemove" :amount="item.amount" @cancel="isOpenRemove = false" @approve="handleRemove" />
     </TransitionGroup>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { ModalWindowProps, ModalWindowEmits } from './ModalWindow.props'
 import { RemoveButton } from '../RemoveButton'
 import { RemoveFrame } from '../RemoveFrame'
 import { SkeletonLoader } from '../SkeletonLoader'
 import { InventoryItem } from '../InventoryItem'
 import { Size } from '../InventoryItem/InventoryItem.props'
-
-const isOpenRemove = ref(false)
+import type { ModalWindowEmits, ModalWindowProps } from './ModalWindow.props'
 
 defineProps<ModalWindowProps>()
+
 const emit = defineEmits<ModalWindowEmits>()
+
+const isOpenRemove = ref(false)
 
 function handleRemove(removeAmount: number) {
   emit('remove', removeAmount)
@@ -56,6 +48,7 @@ function handleRemove(removeAmount: number) {
   top: 0;
   bottom: 0;
   min-width: 250px;
+  width: 50%;
   background-color: rgba(38, 38, 38, 0.5);
   backdrop-filter: blur(8px);
   border: 1px solid $border-color;
@@ -117,6 +110,7 @@ function handleRemove(removeAmount: number) {
     transform: translateX(100%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
